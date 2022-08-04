@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post } from '@nestjs/common';
 import { CarsService } from './cars.service';
 
 @Controller('cars')
@@ -14,7 +14,7 @@ export class CarsController {
   }
 
   @Get(':id')
-  getCarById(@Param('id') id: string) {
+  getCarById(@Param('id',ParseUUIDPipe) id: string) {
     console.log(id);
     return this.carsServise.findOneById(id);
   }
@@ -41,3 +41,7 @@ export class CarsController {
   }
   
 }
+function ParseUUID(arg0: string, ParseUUID: any) {
+  throw new Error('Function not implemented.');
+}
+
